@@ -6,6 +6,7 @@ body {
     margin: 0;
     justify-content: center;
     display: flex;
+    background: #09122C;
 }
 
 .container {
@@ -16,6 +17,7 @@ body {
     margin: 0;
     padding: 40% 0 5%;
     font-size: 110pt;
+    color: #BE3144;
 }
 .bttn {
     width: 35%;
@@ -25,18 +27,19 @@ body {
     transition: 0.2s;
 }
 .bttn.primary {
-    background-color: #1677ff;
+    background-color: #872341;
     color: white;
     border: none;
     outline: none;
 }
 .bttn.primary:hover {
-    background-color: #69b1ff;
+    background-color: #E17564;
 }
 .bttn.secondary {
     background: none;
-    border: 3px solid #f0f0f0;
+    color: white;
+    border: 3px solid #872341;
 }
 .bttn.secondary:hover {
-    border: 3px solid #69b1ff;
+    border: 3px solid #E17564;
 }
