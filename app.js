@@ -1,59 +1,99 @@
-let arr = [2, -8, 5, -1, 2, -3, 2]
-console.log(getMaxSubSum(arr))
+console.log(findAll(10, 3))
 
-function getMaxSubSum(inputArray) {
-  // variables for calculations
-  let sumHeap = []
-  let indexHeap = []
-  let indexBuffer = []
-  let sum = 0
-  let sub = 0
-  let flipped = false
 
-  // func to calculate sums and store then if they less than subs
-  let calculateSums = function() {
-    if (sum && sum > sub) {
-      flipped = false;
-      sum -= sub; sub = 0;
-    } else if (sum && sum <= sub){
-      flipped = false;
-      indexHeap.push(Object.assign([], indexBuffer));
-      indexBuffer.length = 0;
-      sumHeap.push(sum);
-      sum=0; sub=0;
-    } else {
-      flipped = false;
-      sub = 0;
-    }
-  }
-  // main loop for handling sums and subs
-  for (let index = 0; index < inputArray.length; index++) {
-    let value = inputArray[index];
 
-    if (value > 0) {
-      if (flipped) {
-        calculateSums()
-      }
-      indexBuffer.push(index)
-      sum += value;
-    }
-    if (index == (inputArray.length-1)) {
-      indexHeap.push(Object.assign([], indexBuffer));
-      indexBuffer.length = 0;
-      sumHeap.push(sum);
-      sum=0; sub=0;
-    }
-    if (value <= 0) sub += Math.abs(value), flipped=true;
-  }
+function findAll(sum, digit) {
+  let [num, store, sorted] = [[], [], []]
+  genNums(digit, num, store)
 
-  // taking best sum
-  let bestSum = sumHeap[0];
-  let bestSumIndex = 0;
-  for (let i = 0; i < sumHeap.length; i++) {
-    if (sumHeap[i] > bestSum) bestSum = sumHeap[i], bestSumIndex = i;
-  }
-
-  console.log(sumHeap);
-  console.log(indexHeap);
-  return bestSum;
+  for (let i = 0; i < store.length; i++) { if(store[i].reduce((digitSum, digitValue) => digitSum + digitValue, 0) == sum) sorted.push(store[i]) }
+  return (sorted.length) ? [sorted.length, sorted.at(0).join(''), sorted.at(-1).join('')] : []
 }
+
+function genNums(digit, num, store, i = 0, k = 1) {
+  if (i >= digit) store.push(num.slice());
+  else {for (let j = k; j < 10; j++) { num[i] = j; if (i < digit) genNums(digit, num, store, i + 1, k), k++}};
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function findAll(sum, count) {
+//  let ceil = 10**count
+//  let [minNum, maxNum, counter] = [-1, 0, 0]
+
+//  findMin: for (let i = ceil/10; i < ceil; i++) {
+//    let str = String(i).split('')
+//    let sort = String(i).split('').sort().join('')
+
+//    if (str.includes('0') || str.join('') != sort) continue findMin;
+//    if (str.reduce((redSum, value) => +redSum + +value, 0) != sum) continue findMin;
+//    minNum = i; break
+//  }
+
+//  if (minNum == -1) return []
+
+//  loop: for (let i = minNum; i < ceil; i += 9) {
+//    let str = String(i).split('')
+//    let sort = String(i).split('').sort().join('')
+    
+//    if (str.includes('0') || str.join('') != sort) continue loop;
+//    if (str.reduce((redSum, value) => +redSum + +value, 0) != sum) continue loop;
+//    maxNum = i; counter++;
+//  }
+
+//  return (counter != 0) ? [counter, String(minNum), String(maxNum)] : []
+//}
