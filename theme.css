@@ -3,21 +3,22 @@
 body {
     font-family: Montserrat;
     font-weight: 300;
-    padding: 0;
+    padding: 20px;
     margin: 0;
     background-color: rgb(33, 33, 33);
     color: white;
+    height: 2000px;
 }
 
-.clock {
-    padding: 20px;
-    display: flex;
-}
-
-p {
-    margin: 3px;
-    font-size: 40pt;
-}
-.hours { color: rgb(255, 114, 114); }
-.minutes { color: rgb(133, 255, 133); }
-.seconds { color: rgb(148, 148, 255); }
+.tooltip {
+    /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
+    position: fixed;
+    padding: 10px 20px;
+    border: 1px solid #b3c9ce;
+    border-radius: 4px;
+    text-align: center;
+    font: italic 14px/1.3 sans-serif;
+    color: #333;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
+  }

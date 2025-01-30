@@ -1,25 +1,20 @@
-class Clock {
-	currentTime = [0,0,0]
-	update() {
-		let now = new Date()
-		this.currentTime = [now.getHours(), now.getMinutes(), now.getSeconds()]
-	}
-}
+let Tooltip;
+
+document.addEventListener('mouseover', toggleTooltip)
+document.addEventListener('mouseout', toggleTooltip)
 
 
-let hours = document.querySelector('.hours');
-let minutes = document.querySelector('.minutes');
-let seconds = document.querySelector('.seconds');
+function toggleTooltip(event) {
+	if (event.target.dataset.tooltip == undefined) return;
 
-let clock = new Clock
+	if (!Tooltip) {
+		let targetBCR = event.target.getBoundingClientRect(); let offset = 5
+		Tooltip = document.createElement('div'); Tooltip.className = 'tooltip';
+		Tooltip.innerHTML = event.target.dataset.tooltip;
+		document.body.append(Tooltip)
 
-updateHTML()
-let clockTimer = setInterval(() => updateHTML(), 1000)
-
-
-function updateHTML() {
-	clock.update()
-	hours.textContent = clock.currentTime[0]
-	minutes.textContent = clock.currentTime[1]
-	seconds.textContent = clock.currentTime[2]
+		let tooltipBCR = Tooltip.getBoundingClientRect()
+		Tooltip.style.top = (targetBCR.top < tooltipBCR.height) ? targetBCR.top+targetBCR.height+offset+'px' : targetBCR.top-tooltipBCR.height-offset+'px'
+		let leftOffset = targetBCR.left-(tooltipBCR.width-targetBCR.width)/2; Tooltip.style.left = (leftOffset < 0) ? targetBCR.left+'px' : leftOffset+'px'
+	} else { Tooltip.remove(); Tooltip = undefined; }
 }
