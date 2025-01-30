@@ -18,3 +18,4 @@ function toggleTooltip(event) {
 		let leftOffset = targetBCR.left-(tooltipBCR.width-targetBCR.width)/2; Tooltip.style.left = (leftOffset < 0) ? targetBCR.left+'px' : leftOffset+'px'
 	} else { Tooltip.remove(); Tooltip = undefined; }
 }
+
