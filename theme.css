@@ -3,7 +3,7 @@
 body {
     font-family: Montserrat;
     font-weight: 300;
-    padding: 20px;
+    padding: 0;
     margin: 0;
     background-color: rgb(33, 33, 33);
     color: white;
@@ -11,9 +11,11 @@ body {
 }
 
 .tooltip {
-    /* немного стилизуем подсказку, можете использовать свои стили вместо этих */
     position: fixed;
+    z-index: 100;
+
     padding: 10px 20px;
+
     border: 1px solid #b3c9ce;
     border-radius: 4px;
     text-align: center;
@@ -22,3 +24,24 @@ body {
     background: #fff;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
   }
+
+#house {
+    margin-top: 50px;
+    padding-top: 50px;
+    width: 400px;
+    border: 1px solid brown;
+}
+
+#roof {
+    width: 0;
+    height: 0;
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    border-bottom: 20px solid brown;
+    margin-top: -20px;
+}
+
+p {
+    text-align: justify;
+    margin: 10px 3px;
+}
